@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 unosKolicinaInput.getText().clear();
                 unosVrijemeInput.getText().clear();
                 rezultat.getText().clear();
+                ispisTezina.getText().clear();
+                ispisVisina.getText().clear();
                 showToast("Unos i rezultat su očišćeni.");
             }
         });
