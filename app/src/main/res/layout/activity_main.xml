@@ -40,7 +40,7 @@
             android:layout_marginEnd="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/unos1"
+                android:id="@+id/unosKolicinaInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
@@ -66,7 +66,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutUnos2"
+            android:id="@+id/inputLayoutunosVrijemeInput"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             android:layout_marginEnd="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/unos2"
+                android:id="@+id/unosVrijemeInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"

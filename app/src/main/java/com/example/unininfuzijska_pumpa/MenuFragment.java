@@ -67,6 +67,7 @@ public class MenuFragment extends DialogFragment {
             int visinaValue = Integer.parseInt(visinaEditText.getText().toString());
 
             onCloseListener.onClose(tezinaValue, visinaValue);
+            dismiss();
         }
     }
 }

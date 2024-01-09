@@ -12,8 +12,11 @@ import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText unos1;
-    private EditText unos2;
+    private double kolicina, vrijeme;
+    private int tezina, visina;
+
+    private EditText unosKolicinaInput;
+    private EditText unosVrijemeInput;
     private EditText rezultat;
     private Button gumb1;
     private Button gumb2;
@@ -21,13 +24,45 @@ public class MainActivity extends AppCompatActivity {
     private Button gumb4;
     private Button prikaziMeniGumb;
 
+    public void setKolicina(double kolicina) {
+        this.kolicina = kolicina;
+    }
+
+    public void setVrijeme(double vrijeme) {
+        this.vrijeme = vrijeme;
+    }
+
+    public void setTezina(int tezina) {
+        this.tezina = tezina;
+    }
+
+    public void setVisina(int visina) {
+        this.visina = visina;
+    }
+
+    public double getKolicina() {
+        return this.kolicina;
+    }
+
+    public double getVrijeme() {
+        return this.vrijeme;
+    }
+
+    public int getTezina() {
+        return this.tezina;
+    }
+
+    public int getVisina() {
+        return this.visina;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        unos1 = findViewById(R.id.unos1);
-        unos2 = findViewById(R.id.unos2);
+        unosKolicinaInput = findViewById(R.id.unosKolicinaInput);
+        unosVrijemeInput = findViewById(R.id.unosVrijemeInput);
         rezultat = findViewById(R.id.rezultat);
         gumb1 = findViewById(R.id.gumb1);
         gumb2 = findViewById(R.id.gumb2);
@@ -40,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Očisti unose
-                unos1.getText().clear();
+                unosKolicinaInput.getText().clear();
                 rezultat.getText().clear();
                 showToast("Unos je očišćen.");
             }
@@ -49,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Očisti unose
-                unos2.getText().clear();
+                unosVrijemeInput.getText().clear();
                 rezultat.getText().clear();
                 showToast("Unos je očišćen.");
             }
@@ -67,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Očisti unose i rezultat
-                unos1.getText().clear();
-                unos2.getText().clear();
+                unosKolicinaInput.getText().clear();
+                unosVrijemeInput.getText().clear();
                 rezultat.getText().clear();
                 showToast("Unos i rezultat su očišćeni.");
             }
@@ -85,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     private void showMenuFragment() {
         // Create an instance of the MenuFragment
         MenuFragment menuFragment = MenuFragment.newInstance();
-    
+
         // Set the onCloseListener in the main activity
         menuFragment.setOnCloseListener(new MenuFragment.OnCloseListener() {
             @Override
@@ -93,16 +128,15 @@ public class MainActivity extends AppCompatActivity {
                 onFragmentClose(tezina, visina);
             }
         });
-    
+
         // Get the FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
-    
+
         // Begin the transaction
         fragmentManager.beginTransaction()
                 .add(menuFragment, "menuFragment")
                 .commit();
     }
-
 
     public void onFragmentClose(int tezina, int visina) {
         // Access the tezina and visina values here
@@ -110,21 +144,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Example: Display a toast with the values
         String message = "Tezina: " + tezina + ", Visina: " + visina;
+
+        setTezina(tezina);
+        setVisina(visina);
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void funkcija() {
         try {
-            if (unos1 != null && unos2 != null && rezultat != null) {
-                double V = Double.parseDouble(unos1.getText().toString());
-                double t = Double.parseDouble(unos2.getText().toString());
-                double v1 = V / (2 * (t - 1));
+            if (unosKolicinaInput != null && unosVrijemeInput != null && rezultat != null) {
+                setKolicina(Double.parseDouble(unosKolicinaInput.getText().toString()));
+                setVrijeme(Double.parseDouble(unosVrijemeInput.getText().toString()));
+
+                double v1 = getKolicina() / (2 * (getVrijeme() - 1));
                 double v2 = 2 * v1;
 
                 if (v1 > 100) {
                     showToast("Početna brzina je prevelika! Povećajte broj sati.");
                 } else {
-                    String poruka = "Ne zaboravite odspojiti pacijenta nakon " + String.format("%.2f", t) + " sati!";
+                    String poruka = "Ne zaboravite odspojiti pacijenta nakon " + String.format("%.2f", getVrijeme()) + " sati!";
                     rezultat.setText("Protok prvog i zadnjeg sata iznosi: " + String.format("%.3f", v1)
                             + " ml/h.\nProtok srednjeg sata iznosi: " + String.format("%.3f", v2) + " ml/h.\n"
                             + poruka);
