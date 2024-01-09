@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/medic"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tekst1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IZRAČUN BRZINE INFUZIJSKOG PROTOKA"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+    <!-- Polje za unos količine otopine -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutUnosl"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/unos1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="Unesite količinu otopine u mililitrima" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/gumb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Očisti unos!"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:minWidth="150dp"
+            android:contentDescription="Očisti unos!" />
+    </LinearLayout>
+
+    <!-- Polje za unos vremena -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutUnos2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/unos2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="Unesite vrijeme u satima" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/gumb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Očisti unos!"
+            android:layout_marginTop="10dp"
+            android:minWidth="150dp"
+            android:contentDescription="Očisti unos" />
+    </LinearLayout>
+
+    <!-- Gumb za izračun -->
+    <Button
+        android:id="@+id/gumb3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Izračunaj!"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:minWidth="150dp"
+        android:contentDescription="Izračunaj" />
+
+    <!-- Polje za prikaz rezultata -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayoutRezultat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/rezultat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:hint="Rezultat"
+            android:focusable="false"
+            android:clickable="false"
+            android:longClickable="false"
+            android:textIsSelectable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Gumb za brisanje rezultata -->
+    <Button
+        android:id="@+id/gumb4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Očisti rezultat!"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:minWidth="150dp"
+        android:contentDescription="Očisti rezultat" />
+</LinearLayout>
