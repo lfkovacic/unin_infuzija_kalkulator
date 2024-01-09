@@ -13,7 +13,7 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="top"
         android:text="Prikaži meni"
-        android:contentDescription="Meni" 
+        android:contentDescription="Meni"
     />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="IZRAČUN BRZINE INFUZIJSKOG PROTOKA"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
     <!-- Polje za unos količine otopine -->
     <LinearLayout
@@ -123,7 +123,33 @@
             android:clickable="false"
             android:longClickable="false"
             android:textIsSelectable="false" />
+
+
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/ispisTezina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:hint="Tezina"
+        android:focusable="false"
+        android:clickable="false"
+        android:longClickable="false"
+        android:textIsSelectable="false"
+    />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/ispisVisina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:hint="Visina"
+        android:focusable="false"
+        android:clickable="false"
+        android:longClickable="false"
+        android:textIsSelectable="false"
+    />
+
 
     <!-- Gumb za brisanje rezultata -->
     <Button

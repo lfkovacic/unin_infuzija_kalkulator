@@ -13,6 +13,9 @@ import androidx.fragment.app.DialogFragment;
 
 public class MenuFragment extends DialogFragment {
 
+    private EditText tezinaEditText;
+    private EditText visinaEditText;
+
     private OnCloseListener onCloseListener;
 
     public MenuFragment() {
@@ -35,10 +38,10 @@ public class MenuFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
         // Example of accessing values from ParametriEnum
-        EditText tezinaEditText = view.findViewById(R.id.tezinaEditText);
+        tezinaEditText = view.findViewById(R.id.tezinaEditText);
         tezinaEditText.setHint(ParametriEnum.TEZINA.getLabel());
 
-        EditText visinaEditText = view.findViewById(R.id.visinaEditText);
+        visinaEditText = view.findViewById(R.id.visinaEditText);
         visinaEditText.setHint(ParametriEnum.VISINA.getLabel());
 
         Button closeButton = view.findViewById(R.id.closeButton);
@@ -60,11 +63,12 @@ public class MenuFragment extends DialogFragment {
 
     private void onClose() {
         if (onCloseListener != null) {
-            EditText tezinaEditText = getView().findViewById(R.id.tezinaEditText);
-            EditText visinaEditText = getView().findViewById(R.id.visinaEditText);
 
-            int tezinaValue = Integer.parseInt(tezinaEditText.getText().toString());
-            int visinaValue = Integer.parseInt(visinaEditText.getText().toString());
+            String tezinaString = tezinaEditText.getText().toString();
+            String visinaString = visinaEditText.getText().toString();
+
+            int tezinaValue = Integer.parseInt(tezinaString.length() == 0 ? "0" : tezinaString);
+            int visinaValue = Integer.parseInt(visinaString.length() == 0 ? "0" : visinaString);
 
             onCloseListener.onClose(tezinaValue, visinaValue);
             dismiss();

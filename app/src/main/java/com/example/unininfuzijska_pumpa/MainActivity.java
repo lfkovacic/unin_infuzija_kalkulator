@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.fragment.app.FragmentManager;
 
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private Button gumb4;
     private Button prikaziMeniGumb;
 
+    private EditText ispisTezina;
+    private EditText ispisVisina;
+
     public void setKolicina(double kolicina) {
         this.kolicina = kolicina;
     }
@@ -33,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setTezina(int tezina) {
+        ispisTezina.setText(((Integer) tezina).toString());
         this.tezina = tezina;
     }
 
     public void setVisina(int visina) {
+        ispisVisina.setText(((Integer) visina).toString());
         this.visina = visina;
     }
 
@@ -68,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         gumb2 = findViewById(R.id.gumb2);
         gumb3 = findViewById(R.id.gumb3);
         gumb4 = findViewById(R.id.gumb4);
+
+        ispisTezina = findViewById(R.id.ispisTezina);
+        ispisVisina = findViewById(R.id.ispisVisina);
 
         prikaziMeniGumb = findViewById(R.id.prikaziMeniGumb);
 
@@ -156,16 +165,22 @@ public class MainActivity extends AppCompatActivity {
                 setKolicina(Double.parseDouble(unosKolicinaInput.getText().toString()));
                 setVrijeme(Double.parseDouble(unosVrijemeInput.getText().toString()));
 
+                double koncentracijaTkivo = 0;
+
+                if ((Integer) getTezina() != null)
+                    koncentracijaTkivo = getKolicina() / getTezina();
+
                 double v1 = getKolicina() / (2 * (getVrijeme() - 1));
                 double v2 = 2 * v1;
 
                 if (v1 > 100) {
                     showToast("Početna brzina je prevelika! Povećajte broj sati.");
                 } else {
-                    String poruka = "Ne zaboravite odspojiti pacijenta nakon " + String.format("%.2f", getVrijeme()) + " sati!";
+                    String poruka = "Ne zaboravite odspojiti pacijenta nakon " + String.format("%.2f", getVrijeme())
+                            + " sati!";
                     rezultat.setText("Protok prvog i zadnjeg sata iznosi: " + String.format("%.3f", v1)
                             + " ml/h.\nProtok srednjeg sata iznosi: " + String.format("%.3f", v2) + " ml/h.\n"
-                            + poruka);
+                            + poruka + "\nKoncentracija u tkivu: " + String.format("%.3f", koncentracijaTkivo));
                     showToast("Izračunato!");
                 }
             }
