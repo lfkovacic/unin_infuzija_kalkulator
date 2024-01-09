@@ -6,6 +6,15 @@
     android:orientation="vertical"
     android:background="@drawable/medic"
     tools:context=".MainActivity">
+    <Button
+        android:id="@+id/prikaziMeniGumb"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="top"
+        android:text="Prikaži meni"
+        android:contentDescription="Meni" 
+    />
 
     <TextView
         android:id="@+id/tekst1"

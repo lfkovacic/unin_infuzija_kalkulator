@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText unos1;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button gumb2;
     private Button gumb3;
     private Button gumb4;
+    private Button prikaziMeniGumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         gumb2 = findViewById(R.id.gumb2);
         gumb3 = findViewById(R.id.gumb3);
         gumb4 = findViewById(R.id.gumb4);
+
+        prikaziMeniGumb = findViewById(R.id.prikaziMeniGumb);
 
         gumb1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +73,44 @@ public class MainActivity extends AppCompatActivity {
                 showToast("Unos i rezultat su očišćeni.");
             }
         });
+
+        prikaziMeniGumb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMenuFragment();
+            }
+        });
+    }
+
+    private void showMenuFragment() {
+        // Create an instance of the MenuFragment
+        MenuFragment menuFragment = MenuFragment.newInstance();
+    
+        // Set the onCloseListener in the main activity
+        menuFragment.setOnCloseListener(new MenuFragment.OnCloseListener() {
+            @Override
+            public void onClose(int tezina, int visina) {
+                onFragmentClose(tezina, visina);
+            }
+        });
+    
+        // Get the FragmentManager
+        FragmentManager fragmentManager = getSupportFragmentManager();
+    
+        // Begin the transaction
+        fragmentManager.beginTransaction()
+                .add(menuFragment, "menuFragment")
+                .commit();
+    }
+
+
+    public void onFragmentClose(int tezina, int visina) {
+        // Access the tezina and visina values here
+        // You can perform any necessary operations with these values
+
+        // Example: Display a toast with the values
+        String message = "Tezina: " + tezina + ", Visina: " + visina;
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void funkcija() {
@@ -82,7 +125,9 @@ public class MainActivity extends AppCompatActivity {
                     showToast("Početna brzina je prevelika! Povećajte broj sati.");
                 } else {
                     String poruka = "Ne zaboravite odspojiti pacijenta nakon " + String.format("%.2f", t) + " sati!";
-                    rezultat.setText("Protok prvog i zadnjeg sata iznosi: " + String.format("%.3f", v1) + " ml/h.\nProtok srednjeg sata iznosi: " + String.format("%.3f", v2) + " ml/h.\n" + poruka);
+                    rezultat.setText("Protok prvog i zadnjeg sata iznosi: " + String.format("%.3f", v1)
+                            + " ml/h.\nProtok srednjeg sata iznosi: " + String.format("%.3f", v2) + " ml/h.\n"
+                            + poruka);
                     showToast("Izračunato!");
                 }
             }
